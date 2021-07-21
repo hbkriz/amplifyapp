@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -10,6 +12,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import history from './history';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function Copyright() {
   return (
@@ -55,50 +61,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// function onFormSubmit() {
-//   const formData = new FormData();
-
-//   if(userName == null && latitude == null && longitude == null){
-//     formData.append('userName', userName);
-//     formData.append('latitude', latitude);
-//     formData.append('longitude', longitude);
-//   }
-//   const options = {
-//     method: 'POST',
-//     body: formData,
-//     headers: { 'Content-Type': 'application/json' }
-// };
-// //fetch(`https://dzqitngp44.execute-api.us-east-2.amazonaws.com/Prod/api/location/create?UserName=${userName}&Latitude=${latitude}&Longitude=${longitude}`, options)
-
-
-// }
-
 export default function SignIn() {
   const classes = useStyles();
   const options = {
         method: 'POST',
-        body: JSON.stringify({ title: 'React POST' }),
-        headers: { 'Content-Type': 'application/json' }
+        body: ''
     };
   const [state, setState] = React.useState({
       userName: "",
       latitude: "",
-      longitude: ""
+      longitude: "",
+      login : ""
      });
+  const [open, setOpen] = React.useState(false);
   const onFormSubmit = e => { 
-    console.log(`userName => ${state.userName}`);
-    console.log(`latitude => ${state.latitude}`);
-    console.log(`longitude => ${state.longitude}`);
-    fetch(`https://jsonplaceholder.typicode.com/posts`)
-    .then(response => response.json())
-    .then(function(response) {
-      console.info('fetch()', response);
-      return response;
-  });
+    window.open(`/Location?${state.userName}`); 
+  //   console.log(`userName => ${state.userName}`);
+  //   console.log(`latitude => ${state.latitude}`);
+  //   console.log(`longitude => ${state.longitude}`);
+  //   fetch(`https://dzqitngp44.execute-api.us-east-2.amazonaws.com/Prod/api/location/create?UserName=${state.userName}&Latitude=${state.latitude}&Longitude=${state.longitude}`,options)
+  //   .then(response => response.json())
+  //   .then(function(response) {
+  //     console.info('Successfully added', response);
+  //     setOpen(true);
+  // });
+  };
+
+  const handleClose = (event, reason) => {
+    window.open(`/Home?${state.userName}`); 
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
   };
 
   const handleChange = e => {
     const value = e.target.value;
+    state.login =`/Location?${e.target.value}`;
       setState({
       ...state,
       [e.target.name]: value
@@ -127,34 +126,12 @@ export default function SignIn() {
               onChange={handleChange}
               autoFocus
             />
-             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="latitude"
-              label="Latitude"
-              name="latitude"
-              value={state.latitude}
-              onChange={handleChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="longitude"
-              label="Longitude"
-              name="longitude"
-              value={state.longitude}
-              onChange={handleChange}
-            />
             <Button
               type="button"
               fullWidth
               variant="contained"
               color="primary"
-              onClick={onFormSubmit}
+              href={state.login}
               className={classes.submit}
             >
               Submit
@@ -163,6 +140,11 @@ export default function SignIn() {
               <Copyright />
             </Box>
           </form>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success">
+              Created Successfully!
+            </Alert>
+          </Snackbar>
         </div>
       </Grid>
     </Grid>

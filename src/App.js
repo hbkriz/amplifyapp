@@ -6,34 +6,34 @@ import SignIn from './SignIn';
 
 export default function App()
 {
-  const [lat, setLat] = useState([]);
-  const [long, setLong] = useState([]);
-  const [weatherData, setWeather] = useState([]);
-  const [forecastData, setForecast] = useState([]);
+  // const [lat, setLat] = useState([]);
+  // const [long, setLong] = useState([]);
+  // const [weatherData, setWeather] = useState([]);
+  // const [forecastData, setForecast] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const fetchData = async () => {
+  //   const fetchData = async () => {
       
-      navigator.geolocation.getCurrentPosition(function(position){
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      });
+  //     navigator.geolocation.getCurrentPosition(function(position){
+  //       setLat(position.coords.latitude);
+  //       setLong(position.coords.longitude);
+  //     });
 
-      await fetch(`https://jsonplaceholder.typicode.com/todos`)
-      .then(res => res.json())
-      .then(weather => {
-        console.log(weather);
-        // if (Object.entries(weather).length) {
-        //   const mappedWeatherData = mapDataToWeatherInterface(weather);
-        //   setWeather(mappedWeatherData);
-        // }
-      });
-    };
+  //     await fetch(`https://jsonplaceholder.typicode.com/todos`)
+  //     .then(res => res.json())
+  //     .then(weather => {
+  //       console.log(weather);
+  //       // if (Object.entries(weather).length) {
+  //       //   const mappedWeatherData = mapDataToWeatherInterface(weather);
+  //       //   setWeather(mappedWeatherData);
+  //       // }
+  //     });
+  //   };
     
-    fetchData();
+  //   fetchData();
 
-  }, [lat, long]);
+  // }, [lat, long]);
 
   return (
     <div className="App">

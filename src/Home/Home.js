@@ -1,20 +1,19 @@
-import React, { Component } from "react";
-import { Button } from 'react-bootstrap';
-import history from './../history';
+import React, { useState } from "react";
+import Navigation from './../components/Navbar';
+import Routes from '../Routes';
 import "./Home.css";
 
-export default class Home extends Component {
-  render() {
+export default function Home()
+{
+    const [state, setState] = useState({
+        userName: window.location.search.substring(1)
+    });
+
     return (
       <div className="Home">
         <div className="lander">
-          <h1>Home page</h1>
-          <p>A simple app showing react button click navigation</p>
-          <form>
-            <Button variant="btn btn-success" onClick={() => history.push('/Products')}>Click button to view products</Button>
-          </form>
+          <h1>Welcome, {state.userName}!</h1>
         </div>
       </div>
     );
-  }
 }
