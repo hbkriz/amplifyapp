@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navigation from '../components/Navbar';
 
 export default function About()
 {
@@ -7,9 +8,6 @@ export default function About()
     });
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', padding: 30 }}>
-        <h2>Welcome, {state.userName}!</h2>
-        
-        </div>
+        <Navigation userName={state.userName} />
     );
 }

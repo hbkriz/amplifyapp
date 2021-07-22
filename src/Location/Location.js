@@ -11,6 +11,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { DataGrid } from '@material-ui/data-grid';
+import Navigation from '../components/Navbar';
 
 
 function Alert(props) {
@@ -59,6 +60,8 @@ export default function Location() {
     }
 
     return (
+      <div>
+      <Navigation userName={state.userName} />
       <div style={{ display: 'flex', justifyContent: 'center', padding: 30 }}>
         <form noValidate>
               <TextField
@@ -104,16 +107,6 @@ export default function Location() {
               >
                 Update Location
               </Button>
-
-              <Button
-                type="button"
-                fullWidth
-                variant="contained"
-                color="primary"
-                href={state.getHistoryRoute}
-              >
-                Get History
-              </Button>
             </form>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
@@ -122,6 +115,7 @@ export default function Location() {
             </Snackbar>
             <div>
         </div>
+      </div>
       </div>
     );
   }

@@ -97,7 +97,7 @@ export default function SignIn() {
 
   const handleChange = e => {
     const value = e.target.value;
-    state.login =`/Location?${e.target.value}`;
+    state.login =`/About?${e.target.value}`;
       setState({
       ...state,
       [e.target.name]: value
