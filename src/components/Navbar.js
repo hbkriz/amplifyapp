@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import HomeIcon from '@material-ui/icons/Home';
 
 const Navigation = (props) => {
-  console.log(props.userName);
   const locationRoute = `/Location?${props.userName}`;
   const contactRoute = `/Contact?${props.userName}`;
   const homeRoute = `/Home?${props.userName}`;
