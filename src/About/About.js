@@ -32,8 +32,8 @@ export default function About()
 
     var options = { enableHighAccuracy: true, maximumAge: undefined, timeout: undefined };
     if(navigator.geolocation) {
-        //navigator.geolocation.watchPosition(success, error, options);
-        setInterval(function() {navigator.geolocation.getCurrentPosition(success, error, options)}, 5000);
+        navigator.geolocation.watchPosition(success, error, options);
+        //setInterval(function() {navigator.geolocation.getCurrentPosition(success, error, options)}, 5000);
     } else {
         alert("Sorry, browser does not support geolocation!");
     }
